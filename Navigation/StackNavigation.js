@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MessagesScreen from "../screens/MessagesScreen";
 import ChatScreen from "../screens/ChatScreen";
 import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { IconButton } from "react-native-paper";
@@ -17,14 +18,14 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 
 const Stack = createNativeStackNavigator();
 
-export default function StackGroupHome({ navigation, route }) {
+export default function StackGroupHome({ route, navigation }) {
   useEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
     // Determine if the tab bar should be hidden based on the current screen
     const showTabBar = ["Messages", "Home"].includes(routeName); // Add screen names where tab bar should be visible
 
-    // console.log("showTabBar", showTabBar, routeName, route);
+    
     navigation.setOptions({
       tabBarStyle: { display: showTabBar ? "flex" : "none" },
     });
@@ -172,7 +173,7 @@ export default function StackGroupHome({ navigation, route }) {
       /> */}
 
       <Stack.Screen
-        name="Messages"
+        name="MessagesScreen"
         component={MessagesScreen}
         options={{ headerShown: false }}
       />
