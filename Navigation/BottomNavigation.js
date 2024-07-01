@@ -6,6 +6,7 @@ import Profile from "../screens/Profile";
 
 import StackGroupHome from "./StackNavigation";
 import { AppProvider } from "../CustomeHooks/useContext";
+import { Icon, IconButton } from "react-native-paper";
 // Bottom Tab Navigator
 const Tab = createBottomTabNavigator();
 
@@ -16,27 +17,22 @@ export default function TabGroup() {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             headerShown: false,
+
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
+
               if (route.name === "Home") {
                 iconName = focused ? "message-text" : "message-text-outline";
-                return (
-                  <>
-                    <MaterialCommunityIcons
-                      name={iconName}
-                      size={30}
-                      color={color}
-                    />
-                  </>
-                );
+                return <Icon source={iconName} size={30} color={color} />;
               } else if (route.name === "Calls") {
                 iconName = focused ? "phone" : "phone";
-                return <Feather name={iconName} size={30} color={color} />;
-              } else if (route.name === "Profile") {
-                iconName = focused ? "settings-sharp" : "settings-outline";
-                return <Ionicons name={iconName} size={30} color={color} />;
+                return <Icon source={iconName} size={30} color={color} />;
+              } else if (route.name === "Community") {
+                iconName = focused ? "account-group" : "account-group-outline";
+                return <Icon source={iconName} size={30} color={color} />;
               }
             },
+
             tabBarActiveTintColor: "#0af519",
             tabBarInactiveTintColor: "gray",
             tabBarLabelStyle: {
@@ -49,11 +45,13 @@ export default function TabGroup() {
           <Tab.Screen
             name="Home"
             component={StackGroupHome}
-            options={{ tabBarLabel: "Chats" }}
+            options={{
+              tabBarLabel: "Chats",
+            }}
           />
 
+          <Tab.Screen name="Community" component={Profile} />
           <Tab.Screen name="Calls" component={CallsScreen} />
-          <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
       </View>
     </AppProvider>

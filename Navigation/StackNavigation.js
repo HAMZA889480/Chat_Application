@@ -22,16 +22,17 @@ export default function StackGroupHome({ navigation, route }) {
     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
     // Determine if the tab bar should be hidden based on the current screen
-    const showTabBar = ["Messages"].includes(routeName); // Add screen names where tab bar should be visible
+    const showTabBar = ["Messages", "Home"].includes(routeName); // Add screen names where tab bar should be visible
 
     // console.log("showTabBar", showTabBar, routeName, route);
     navigation.setOptions({
       tabBarStyle: { display: showTabBar ? "flex" : "none" },
     });
   }, [navigation, route]);
+
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="WelcomeScreen"
         component={WelcomeScreen}
         options={{ headerShown: false }}
@@ -168,7 +169,7 @@ export default function StackGroupHome({ navigation, route }) {
             );
           },
         }}
-      />
+      /> */}
 
       <Stack.Screen
         name="Messages"

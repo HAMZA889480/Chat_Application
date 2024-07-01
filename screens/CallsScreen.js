@@ -12,7 +12,7 @@ import { useIsFocused } from "@react-navigation/native";
 import callsData from "../data/callsData";
 import CallList from "../components/CallList";
 import { useScreenDimensions } from "../CustomeHooks/useDimensions";
-
+import StartBtn from "../components/NewButton";
 import DropDownMenu from "../components/DropDownMenu";
 import { useCallDropDown } from "../CustomeHooks/useCallDropDown";
 export default function Home() {
@@ -53,7 +53,7 @@ export default function Home() {
   }, [isFocused]);
 
   return (
-    <ScrollView>
+    <View style={{ flex: 1 }}>
       <TouchableWithoutFeedback
         onPress={() => {
           //close dropdown if it is open
@@ -102,14 +102,27 @@ export default function Home() {
           )}
 
           <SearchBar secondTag="Missed" />
-          <View style={styles.HomeContainer}>
-            {callsData.map((callData) => {
-              return <CallList key={callData.id} callRecords={callData} />;
-            })}
+          <View
+            style={{
+              position: "absolute",
+              marginTop: screenWidth * 1.5,
+              right: 30,
+              zIndex: 1,
+            }}
+          >
+            <StartBtn name="phone-plus" onPressHandler="new-call" />
           </View>
+
+          <ScrollView style={{ flexGrow: 1 }}>
+            <View style={styles.HomeContainer}>
+              {callsData.map((callData) => {
+                return <CallList key={callData.id} callRecords={callData} />;
+              })}
+            </View>
+          </ScrollView>
         </View>
       </TouchableWithoutFeedback>
-    </ScrollView>
+    </View>
   );
 }
 

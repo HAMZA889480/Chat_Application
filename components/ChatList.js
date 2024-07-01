@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   list_container: {
     padding: 10,
     flexDirection: "row",
-    backgroundColor: "#eee",
+    backgroundColor: "#fff",
     alignContent: "center",
     marginBottom: 7,
   },
