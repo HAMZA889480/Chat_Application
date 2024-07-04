@@ -4,7 +4,10 @@ import MessagesScreen from "../screens/MessagesScreen";
 import ChatScreen from "../screens/ChatScreen";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import {
+  getFocusedRouteNameFromRoute,
+  useIsFocused,
+} from "@react-navigation/native";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { IconButton } from "react-native-paper";
 import defaultUserImage from "../assets/user_default_1.png";
@@ -15,25 +18,30 @@ import EmailOTPScreen from "../screens/EmailOTPScreen";
 import UserInfoScreen from "../screens/UserInfoScreen";
 
 import WelcomeScreen from "../screens/WelcomeScreen";
+import { TabView } from "react-native-tab-view";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackGroupHome({ route, navigation }) {
-  useEffect(() => {
-    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
+  // const isFocused = useIsFocused();
 
-    // Determine if the tab bar should be hidden based on the current screen
-    const showTabBar = ["Messages", "Home"].includes(routeName); // Add screen names where tab bar should be visible
+  // useEffect(() => {
+  //   const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
-    
-    navigation.setOptions({
-      tabBarStyle: { display: showTabBar ? "flex" : "none" },
-    });
-  }, [navigation, route]);
+  //   // Determine if the tab bar should be hidden based on the current screen
+  //   const showTabBar = ["Messages", "Home"].includes(routeName); // Add screen names where tab bar should be visible
+
+  //   console.log("showTabBar", showTabBar);
+  //   navigation.setOptions({
+  //     // TabView: { display: showTabBar ? "flex" : "none" },
+  //     tabBarStyle: { display: showTabBar ? "flex" : "none" },
+  //   });
+  // }, [route, navigation]);
 
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
+        route="Home"
         name="WelcomeScreen"
         component={WelcomeScreen}
         options={{ headerShown: false }}
@@ -170,7 +178,7 @@ export default function StackGroupHome({ route, navigation }) {
             );
           },
         }}
-      /> */}
+      />
 
       <Stack.Screen
         name="MessagesScreen"
@@ -178,6 +186,7 @@ export default function StackGroupHome({ route, navigation }) {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        route="ChatScreen"
         name="ChatScreen"
         component={ChatScreen}
         options={{

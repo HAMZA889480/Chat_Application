@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from "react";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [chatList, setChatList] = useState(""); // Example state
+  const [chatList, setChatList] = useState("");
 
   return (
     <AppContext.Provider value={{ chatList, setChatList }}>

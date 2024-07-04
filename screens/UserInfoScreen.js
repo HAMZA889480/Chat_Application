@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { CameraView, useCameraPermissions } from "expo-camera";
+import {  useCameraPermissions } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text,Image } from "react-native";
 import { TouchableRipple, TextInput, IconButton } from "react-native-paper";
-// import  from "../CustomeHooks/useDimensions"
+
 
 import { useNavigation } from "@react-navigation/native";
 export default function UserInfoScreen() {
@@ -33,8 +33,7 @@ export default function UserInfoScreen() {
         quality: 1,
       });
 
-      // console.log("Result", result);
-      // console.log("Image URI", result.assets[0].uri);
+    
       if (!result.canceled) {
         setImage(result.assets[0].uri);
       }
@@ -140,7 +139,7 @@ export default function UserInfoScreen() {
           marginTop: "10%",
         }}
         onPress={() => {
-          navigation.navigate("Messages");
+          navigation.navigate("MessagesScreen");
         }}
       >
         <View
