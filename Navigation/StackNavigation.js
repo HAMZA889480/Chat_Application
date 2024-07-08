@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MessagesScreen from "../screens/MessagesScreen";
 import ChatScreen from "../screens/ChatScreen";
 import { useNavigation } from "@react-navigation/native";
-import { useRoute } from "@react-navigation/native";
-import {
-  getFocusedRouteNameFromRoute,
-  useIsFocused,
-} from "@react-navigation/native";
+
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { IconButton } from "react-native-paper";
 import defaultUserImage from "../assets/user_default_1.png";
@@ -16,28 +11,12 @@ import SettingsScreen from "../screens/SettingsScreen";
 import EmailInputScreen from "../screens/EmailInputScreen";
 import EmailOTPScreen from "../screens/EmailOTPScreen";
 import UserInfoScreen from "../screens/UserInfoScreen";
-
+import NewConversation from "../screens/NewConversation";
 import WelcomeScreen from "../screens/WelcomeScreen";
-import { TabView } from "react-native-tab-view";
 
 const Stack = createNativeStackNavigator();
 
-export default function StackGroupHome({ route, navigation }) {
-  // const isFocused = useIsFocused();
-
-  // useEffect(() => {
-  //   const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
-
-  //   // Determine if the tab bar should be hidden based on the current screen
-  //   const showTabBar = ["Messages", "Home"].includes(routeName); // Add screen names where tab bar should be visible
-
-  //   console.log("showTabBar", showTabBar);
-  //   navigation.setOptions({
-  //     // TabView: { display: showTabBar ? "flex" : "none" },
-  //     tabBarStyle: { display: showTabBar ? "flex" : "none" },
-  //   });
-  // }, [route, navigation]);
-
+export default function StackGroupHome() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -242,6 +221,74 @@ export default function StackGroupHome({ route, navigation }) {
                   console.log("More Options");
                 }}
               />
+            );
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="NewConversation"
+        component={NewConversation}
+        options={{
+          headerTitle: () => null,
+
+          headerStyle: {
+            backgroundColor: "#fff",
+          },
+
+          headerLeft: () => {
+            const navigation = useNavigation();
+            return (
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                }}
+              >
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()}
+                  style={{ marginRight: 10 }}
+                >
+                  <Ionicons name="arrow-back" size={24} color="#0fba1a" />
+                </TouchableOpacity>
+
+                <Text
+                  style={{
+                    color: "#0fba1a",
+                    marginLeft: 10,
+                    fontSize: 20,
+                    letterSpacing: 0.7,
+                  }}
+                >
+                  Select Contact
+                </Text>
+              </View>
+            );
+          },
+          headerRight: () => {
+            return (
+              <View style={{ display: "flex", flexDirection: "row" }}>
+                <IconButton
+                  icon="magnify"
+                  iconColor="#0fba1a"
+                  size={25}
+                  onPress={() => {
+                    console.log("Search Contacts");
+                  }}
+                />
+
+                <IconButton
+                  icon="dots-vertical"
+                  iconColor="#0fba1a"
+                  style={{ marginRight: -10 }}
+                  size={25}
+                  onPress={() => {
+                    console.log("More Options Contacts");
+                  }}
+                />
+              </View>
             );
           },
         }}

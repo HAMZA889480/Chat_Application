@@ -3,7 +3,7 @@ import default_pic from "../assets/user_default_1.png";
 const messageData = [
   {
     id: "1",
-    sender: "Ameer Hamza 1",
+    contPersonName: "Ameer Hamza 1",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -11,7 +11,7 @@ const messageData = [
   },
   {
     id: "2",
-    sender: "Ali Raza",
+    contPersonName: "Ali Raza",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -19,7 +19,7 @@ const messageData = [
   },
   {
     id: "3",
-    sender: "Hassan Raza",
+    contPersonName: "Hassan Raza",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -27,7 +27,7 @@ const messageData = [
   },
   {
     id: "4",
-    sender: "Haris Mahmood",
+    contPersonName: "Haris Mahmood",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -35,7 +35,7 @@ const messageData = [
   },
   {
     id: "5",
-    sender: "Haroon Bashir",
+    contPersonName: "Haroon Bashir",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -43,7 +43,7 @@ const messageData = [
   },
   {
     id: "6",
-    sender: "Ameer Hamza 6",
+    contPersonName: "Ameer Hamza 6",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -51,7 +51,7 @@ const messageData = [
   },
   {
     id: "7",
-    sender: "Ameer Hamza 7",
+    contPersonName: "Ameer Hamza 7",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -59,7 +59,7 @@ const messageData = [
   },
   {
     id: "8",
-    sender: "Ameer Hamza 8",
+    contPersonName: "Ameer Hamza 8",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -67,7 +67,7 @@ const messageData = [
   },
   {
     id: "9",
-    sender: "Ameer Hamza 9",
+    contPersonName: "Ameer Hamza 9",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -75,7 +75,7 @@ const messageData = [
   },
   {
     id: "10",
-    sender: "Ameer Hamza 10",
+    contPersonName: "Ameer Hamza 10",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -83,7 +83,7 @@ const messageData = [
   },
   {
     id: "11",
-    sender: "Ameer Hamza 11",
+    contPersonName: "Ameer Hamza 11",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",
@@ -91,7 +91,7 @@ const messageData = [
   },
   {
     id: "12",
-    sender: "Ameer Hamza 12",
+    contPersonName: "Ameer Hamza 12",
     message: "This is last message",
     time: "12:00PM",
     unread: "3",

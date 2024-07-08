@@ -2,28 +2,38 @@ import React from "react";
 import { TouchableRipple } from "react-native-paper";
 import { Text, View, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-export default function ChatList({ message }) {
+import defaultUserImage from "../assets/user_default_1.png";
+export default function ChatList({ data }) {
   const { navigate } = useNavigation();
   return (
     <TouchableRipple
-      key={message.id}
-      onPress={() => navigate("ChatScreen", { message })}
+      key={data.id}
+      onPress={() => navigate("ChatScreen")}
       onLongPress={() => console.log("Long Pressed")}
       rippleColor="#adf7b2"
       style={styles.list_container}
     >
       <>
         <Image
-          source={message.senderImage ? message.senderImage : defaultUserImage}
+          source={data.senderImage ? data.senderImage : defaultUserImage}
           style={styles.user_image}
         />
         <View style={styles.list_content}>
           <View style={styles.user_name_container}>
-            <Text style={styles.user_name}>{message.sender}</Text>
-            <Text style={styles.time}>{message.time}</Text>
+            <Text style={styles.user_name}>{data.contPersonName}</Text>
+
+            {data.time ? (
+              <Text style={styles.time}>{data.time}</Text>
+            ) : (
+              <Text style={styles.time}>New</Text>
+            )}
           </View>
-          <View style={styles.message_container}>
-            <Text style={styles.message_body}>{message.message}</Text>
+          <View style={styles.data_container}>
+            {data.message ? (
+              <Text style={styles.data_body}>{data.message}</Text>
+            ) : (
+              <Text style={styles.time}>{data.phoneNumbers}</Text>
+            )}
           </View>
         </View>
       </>

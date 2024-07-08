@@ -108,7 +108,7 @@ export default function Messages() {
                 </View>
               ) : (
                 chatList.map((message) => (
-                  <ChatList key={message.id} message={message} />
+                  <ChatList key={message.id} data={message} />
                 ))
               )}
             </View>

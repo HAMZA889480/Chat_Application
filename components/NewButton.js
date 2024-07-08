@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton } from "react-native-paper";
 import * as Contacts from "expo-contacts";
-import NewMessageScreen from "../screens/NewMessageScreen";
+// import NewMessageScreen from "../screens/NewConversation";
 export default function NewButton({ name, onPressHandler }) {
   const [contactDetails, setContactDetails] = useState([]);
   const navigation = useNavigation();
@@ -14,16 +14,16 @@ export default function NewButton({ name, onPressHandler }) {
     contacts.map((contact) => {
       //create an object to store the contact details
       let tempContacts = {
-        name: contact.name,
+        contPersonName: contact.name,
         phoneNumbers: contact.phoneNumbers[0].number,
       };
 
       contactsArray.push(tempContacts);
     });
 
-    setContactDetails(contactsArray);
+    //setContactDetails(contactsArray);
 
-    return true;
+    return contactsArray;
   };
 
   //function to fetch contacts from the phone by using expo contacts api
@@ -36,21 +36,19 @@ export default function NewButton({ name, onPressHandler }) {
         });
 
         if (data.length > 0) {
-          // const contact = data;
-          // console.log(contact);
+          const formattedContacts = formatContacts(data);
+          //setting the formatted contacts in the state
+          //setContactDetails(formattedContacts);
 
-          //calling the function to format the contacts and store them in the state
-          //console.log(data);
-          formatContacts(data);
-
-          //diplaying the new message screen and passing the contacts as props
-
-          // <NewMessageScreen />;
+          return formattedContacts;
         } else {
           alert("No contacts found");
+
+          return false; //so we cannot navigate to the new message screen
         }
       } else {
         alert("Permission denied");
+        return false; //so we cannot navigate to the new message screen
       }
     } catch (error) {
       console.log(error);
@@ -67,11 +65,19 @@ export default function NewButton({ name, onPressHandler }) {
       onPress={async () => {
         if (onPressHandler === "new-message") {
           console.log("new message");
-          await getContacts();
-          //navigate to NewMessageScreen;
-          navigation.navigate("NewMessageScreen", {
-            contactDetails: contactDetails,
-          });
+
+          const fetchResult = await getContacts();
+
+          if (fetchResult) {
+            setContactDetails(fetchResult); // Update the state with fetched contacts
+
+            // Use a callback function to navigate after the state is updated
+            setTimeout(() => {
+              navigation.navigate("NewConversation", {
+                contactDetails: fetchResult,
+              });
+            }, 0);
+          }
         } else if (onPressHandler === "new-call") {
           console.log("new call");
         }

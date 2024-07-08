@@ -15,9 +15,11 @@ export default function SearchBar({ secondTag }) {
   const filterData = useCallback(() => {
     //chek if chatData exists before searching.
 
+    // console.log(chatListData);
+
     if (chatListData.length > 0) {
       const searchedData = chatListData.filter((item) =>
-        item.sender
+        item.contPersonName
           .toLocaleLowerCase()
           .includes(searchQuery.toLocaleLowerCase())
       );
